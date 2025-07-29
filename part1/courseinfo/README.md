@@ -1,4 +1,4 @@
-**Exercise 1.1**
+## Exercise 1.1
 
 ```js
 const Header = (props) => {
@@ -60,7 +60,7 @@ const App = () => {
 }
 ```
 
-**Exercise 1.2**
+## Exercise 1.2
 
 ```js
 const Header = (props) => {
@@ -121,6 +121,241 @@ const App = () => {
     <div>
       <Header course={course} />
       <Content parts={parts}/>
+      <Total total_exercises={total_exercises} />
+    </div>
+  )
+}
+
+export default App
+```
+
+## Exercise 1.3
+
+```js
+const Header = (props) => {
+  return (
+    <>
+      <h1>{props.course}</h1>
+    </>
+  )
+}
+
+const Part = (props) => {
+  return (
+    <>
+      <p>{props.name} {props.exercises}</p>
+    </>
+  )
+}
+
+const Content = (props) => {
+  return (
+    <>
+      <Part name={props.part1.name} exercise={props.part1.exercises}/>
+      <Part name={props.part2.name} exercise={props.part2.exercises}/>
+      <Part name={props.part3.name} exercise={props.part3.exercises}/>
+    </>
+  )
+}
+
+const Total = (props) => {
+  return (
+    <>
+      <p>
+        Number of exercises {props.total_exercises}
+      </p>
+    </>
+  )
+
+}
+
+
+const App = () => {
+  const course = 'Half Stack application development'
+  const part1 = {
+    name: "Fundamentals of React",
+    exercises: 10
+  }
+
+  const part2 = {
+    name: "Using props to pass data",
+    exercises: 7
+  }
+
+  const part3 = {
+    name: "State of a component",
+    exercises: 14
+  }
+
+  let total_exercises = part1.exercises + part2.exercises + part3.exercises
+
+  console.log('Total exercises: ', total_exercises)
+
+  return (
+    <div>
+      <Header course={course} />
+      <Content part1={part1} part2={part2} part3={part3}/>
+      <Total total_exercises={total_exercises} />
+    </div>
+  )
+}
+
+export default App
+```
+
+## Exercise 1.4
+
+```js
+const Header = (props) => {
+  return (
+    <>
+      <h1>{props.course}</h1>
+    </>
+  )
+}
+
+const Part = (props) => {
+  return (
+    <>
+      <p>{props.name} {props.exercises}</p>
+    </>
+  )
+}
+
+const Content = (props) => {
+  return (
+    <>
+      <Part name={props.parts[0].name} exercise={props.parts[0].exercises} />
+      <Part name={props.parts[1].name} exercise={props.parts[1].exercises} />
+      <Part name={props.parts[2].name} exercise={props.parts[2].exercises} />
+    </>
+  )
+}
+
+const Total = (props) => {
+  return (
+    <>
+      <p>
+        Number of exercises {props.total_exercises}
+      </p>
+    </>
+  )
+
+}
+
+
+const App = () => {
+  const course = 'Half Stack application development'
+  const parts = [
+    {
+      name: "Fundamentals of React",
+      exercises: 10
+    },
+    {
+      name: "Using props to pass data",
+      exercises: 7
+    },
+    {
+      name: "State of a component",
+      exercises: 14
+    }
+  ]
+
+
+  let total_exercises = 0
+
+  for(let i = 0; i < parts.length; i++) {
+    total_exercises += parts[i].exercises;
+  }
+
+  console.log('Total exercises: ', total_exercises)
+
+  return (
+    <div>
+      <Header course={course} />
+      <Content parts={parts} />
+      <Total total_exercises={total_exercises} />
+    </div>
+  )
+}
+
+export default App
+```
+
+
+## Exercise 1.5
+
+```js
+const Header = (props) => {
+  return (
+    <>
+      <h1>{props.course}</h1>
+    </>
+  )
+}
+
+const Part = (props) => {
+  return (
+    <>
+      <p>{props.name} {props.exercises}</p>
+    </>
+  )
+}
+
+const Content = (props) => {
+  return (
+    <>
+      <Part name={props.parts[0].name} exercise={props.parts[0].exercises} />
+      <Part name={props.parts[1].name} exercise={props.parts[1].exercises} />
+      <Part name={props.parts[2].name} exercise={props.parts[2].exercises} />
+    </>
+  )
+}
+
+const Total = (props) => {
+  return (
+    <>
+      <p>
+        Number of exercises {props.total_exercises}
+      </p>
+    </>
+  )
+
+}
+
+
+const App = () => {
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: "Fundamentals of React",
+        exercises: 10
+      },
+      {
+        name: "Using props to pass data",
+        exercises: 7
+      },
+      {
+        name: "State of a component",
+        exercises: 14
+      }
+    ]
+  }
+
+
+  let total_exercises = 0
+
+  for (let i = 0; i < course.parts.length; i++) {
+    total_exercises += course.parts[i].exercises;
+  }
+
+  console.log('Total exercises: ', total_exercises)
+
+  return (
+    <div>
+      <Header course={course.name} />
+      <Content parts={course.parts} />
       <Total total_exercises={total_exercises} />
     </div>
   )
